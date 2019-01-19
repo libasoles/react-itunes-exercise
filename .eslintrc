@@ -1,0 +1,17 @@
+{
+  "extends": "airbnb",
+  "env": {
+  "browser": true,
+    "node": true
+},
+  "rules": {
+  "import/prefer-default-export": false,
+  "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+},
+  "settings": {
+  "import/resolver": {
+    "babel-module": {}
+  }
+},
+  "parser": "babel-eslint"
+}
