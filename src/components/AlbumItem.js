@@ -24,6 +24,9 @@ const styles = theme => ({
   title: {
     fontSize: '0.8em',
   },
+  subtitle: {
+    fontSize: '0.8em',
+  },
   description: {
     fontSize: '0.7em',
   },
@@ -31,7 +34,9 @@ const styles = theme => ({
 
 const AlbumItem = (props) => {
   const { classes, item } = props;
-  const { image, title, description } = item;
+  const {
+    image, title, subtitle, description,
+  } = item;
 
   return (
     <Card className={classes.card}>
@@ -43,6 +48,9 @@ const AlbumItem = (props) => {
       <CardContent className={classes.cardContent}>
         <Typography noWrap variant="title" className={classes.title}>
           { title }
+        </Typography>
+        <Typography noWrap variant="subtitle1" className={classes.subtitle}>
+          { subtitle }
         </Typography>
         <Typography className={classes.description}>
           { description }

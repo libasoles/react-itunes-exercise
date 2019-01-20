@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import moment from 'moment';
-import get from 'lodash/get';
 
+import resources from '../../resources';
 import SearchBox from '../../components/SearchBox';
 import SearchResults from './SearchPageResults';
 
@@ -16,30 +14,13 @@ class SearchPageBody extends Component {
   }
 
   componentDidMount() {
-    const params = {
+    const filters = {
       term: 'gold',
-      type: 'music',
-      entity: 'album',
-      attribute: 'albumTerm',
       limit: 25,
     };
 
-    axios.get('https://itunes.apple.com/search', { params })
-      .then((response) => {
-        const results = get(response, 'data.results', []);
-
-        if (results.length === 0) {
-          this.resetResults();
-        }
-
-        const items = results.map(x => ({
-          id: x.artistId,
-          title: x.artistName,
-          image: x.artworkUrl100,
-          description: `${moment(x.releaseDate).year()}`,
-          link: x.artistViewUrl,
-        }));
-
+    resources.fetchAlbums(filters)
+      .then((items) => {
         this.setState({
           items,
         });
@@ -47,12 +28,6 @@ class SearchPageBody extends Component {
       .catch((response) => {
         console.error(response);
       });
-  }
-
-  resetResults() {
-    this.setState({
-      items: [],
-    });
   }
 
   render() {
