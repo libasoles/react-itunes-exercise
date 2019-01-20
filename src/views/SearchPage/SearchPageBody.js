@@ -9,6 +9,7 @@ class SearchPageBody extends Component {
     super();
 
     this.state = {
+      term: '',
       items: [],
     };
   }
@@ -30,12 +31,18 @@ class SearchPageBody extends Component {
       });
   }
 
+  handleSearchTermChange = (event) => {
+    this.setState({
+      term: event.target.value,
+    });
+  }
+
   render() {
-    const { items } = this.state;
+    const { term, items } = this.state;
 
     return (
       <React.Fragment>
-        <SearchBox />
+        <SearchBox term={term} handleChange={this.handleSearchTermChange} />
         <SearchResults items={items} />
       </React.Fragment>
     );

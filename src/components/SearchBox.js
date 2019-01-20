@@ -2,23 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 
-function SearchBox({ classes, term, placeholder }) {
+function SearchBox({ term, placeholder, handleChange }) {
   return (
     <TextField
-      name="main-search"
+      name="search-term"
       label={placeholder}
       type="search"
       autoFocus
       margin="normal"
       value={term}
+      onChange={handleChange}
     />
   );
 }
 
 SearchBox.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   placeholder: PropTypes.string,
   term: PropTypes.string,
+  handleChange: PropTypes.func.isRequired,
 };
 
 SearchBox.defaultProps = {
