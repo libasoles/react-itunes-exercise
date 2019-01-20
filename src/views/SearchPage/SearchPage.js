@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core';
 
 import Header from '../../components/Header';
@@ -7,22 +8,24 @@ import SearchPageHeader from './SearchPageHeader';
 import SearchPageBody from './SearchPageBody';
 
 const styles = theme => ({
-  main: {
+  container: {
     background: '#757575',
     textAlign: 'center',
-    marginBottom: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
   },
 });
 
+
 function SearchPage({ classes }) {
   return (
-    <React.Fragment>
+    <Grid container className={classes.container}>
       <Header title="iTunes discovery" />
-      <main className={classes.main}>
-        <SearchPageHeader title="Qué queres escuchar hoy?" />
+      <main>
+        <SearchPageHeader title="Qué querés escuchar hoy?" />
         <SearchPageBody />
       </main>
-    </React.Fragment>
+    </Grid>
   );
 }
 

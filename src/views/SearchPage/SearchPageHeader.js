@@ -8,6 +8,7 @@ import logo from '../../logo.png';
 const styles = theme => ({
   header: {
     position: 'relative',
+    padding: '20px',
   },
 });
 

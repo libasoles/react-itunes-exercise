@@ -2,45 +2,47 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import Paper from '@material-ui/core/Paper';
-import grey from '@material-ui/core/colors/grey';
+
+import AlbumItem from '../../components/AlbumItem';
 
 const styles = theme => ({
   container: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    padding: '30px 3em',
     display: 'flex',
-    position: 'relative',
-    flexDirection: 'row',
   },
-  cards: {
-    flexGrow: 1,
-    marginTop: '30px',
-    flex: 1,
-  },
-  card: {
-    height: 140,
-    width: 100,
-    color: grey[100],
+  item: {
+    margin: '3px',
   },
 });
 
 function SearchPageResults({ classes, items }) {
   return (
-    <Grid container spacing={16} className={classes.container}>
-      <Grid item xs={12}>
-        <Grid container justify="center" spacing={16} className={classes.cards}>
-          {items.map(value => (
-            <Grid key={value} item>
-              <Paper className={classes.card} />
-            </Grid>
-          ))}
-        </Grid>
+    <React.Fragment>
+      <Grid
+        container
+        className={classes.container}
+        alignItems="stretch"
+        justify="center"
+      >
+        {items.map(item => (
+          <Grid item key={item.id} className={classes.item}>
+            <AlbumItem key={item.id} item={item} />
+          </Grid>
+        ))}
       </Grid>
-    </Grid>
+    </React.Fragment>
   );
 }
 
 SearchPageResults.propTypes = {
   classes: PropTypes.shape({}).isRequired,
+  items: PropTypes.arrayOf(PropTypes.shape({
+    image: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
 export default withStyles(styles)(SearchPageResults);

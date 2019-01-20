@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 import moment from 'moment';
 import get from 'lodash/get';
-import { withStyles } from '@material-ui/core/styles';
 
 import SearchBox from '../../components/SearchBox';
 import SearchResults from './SearchPageResults';
-
-const styles = theme => ({
-
-});
 
 class SearchPageBody extends Component {
   constructor() {
@@ -27,7 +21,7 @@ class SearchPageBody extends Component {
       type: 'music',
       entity: 'album',
       attribute: 'albumTerm',
-      limit: 20,
+      limit: 25,
     };
 
     axios.get('https://itunes.apple.com/search', { params })
@@ -42,7 +36,7 @@ class SearchPageBody extends Component {
           id: x.artistId,
           title: x.artistName,
           image: x.artworkUrl100,
-          description: "" + moment(x.releaseDate).year(),
+          description: `${moment(x.releaseDate).year()}`,
           link: x.artistViewUrl,
         }));
 
@@ -62,7 +56,6 @@ class SearchPageBody extends Component {
   }
 
   render() {
-    const { classes } = this.props;
     const { items } = this.state;
 
     return (
@@ -74,8 +67,4 @@ class SearchPageBody extends Component {
   }
 }
 
-SearchPageBody.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
-};
-
-export default withStyles(styles)(SearchPageBody);
+export default SearchPageBody;
