@@ -1,17 +1,41 @@
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import { MuiThemeProvider, withStyles } from '@material-ui/core/styles';
+import { BrowserRouter } from 'react-router-dom';
+import Grid from '@material-ui/core/Grid/Grid';
+import PropTypes from 'prop-types';
 
 import theme from './theme';
-import SearchPage from './views/SearchPage/SearchPage';
+import Routes from './routes';
+import Header from './components/Header';
 
-function App() {
+const styles = theme => ({
+  container: {
+    background: '#757575',
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+});
+
+function App({ classes }) {
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
-      <SearchPage />
+      <BrowserRouter>
+        <Grid container className={classes.container}>
+          <Header title="iTunes discovery" />
+          <main>
+            <Routes />
+          </main>
+        </Grid>
+      </BrowserRouter>
     </MuiThemeProvider>
   );
 }
 
-export default App;
+App.propTypes = {
+  classes: PropTypes.shape({}).isRequired,
+};
+
+export default withStyles(styles)(App);

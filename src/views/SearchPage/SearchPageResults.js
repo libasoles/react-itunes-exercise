@@ -19,20 +19,18 @@ const styles = theme => ({
 
 function SearchPageResults({ classes, items }) {
   return (
-    <React.Fragment>
-      <Grid
-        container
-        className={classes.container}
-        alignItems="stretch"
-        justify="center"
-      >
-        {items.map(item => (
-          <Grid item key={item.id} className={classes.item}>
-            <AlbumItem key={item.id} item={item} />
-          </Grid>
-        ))}
-      </Grid>
-    </React.Fragment>
+    <Grid
+      container
+      className={classes.container}
+      alignItems="stretch"
+      justify="center"
+    >
+      {items.map(item => (
+        <Grid item key={item.id} className={classes.item}>
+          <AlbumItem key={item.id} item={item} />
+        </Grid>
+      ))}
+    </Grid>
   );
 }
 
