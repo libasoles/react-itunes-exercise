@@ -2,7 +2,12 @@
   "version": 2,
   "name": "react-itunes-exercise",
   "builds": [
-    { "src": "src/index.js", "use": "@now/node" },
-    { "src": "public/index.html", "use": "@now/static" }
+    { "src": "package.json", "use": "@now/static-build" }
+  ],
+  "routes": [
+    {"src": "^/static/(.*)", "dest": "/static/$1"},
+    {"src": "^/favicon.ico", "dest": "/favicon.ico"},
+    {"src": "^/service-worker.js", "headers": {"cache-control": "s-maxage=0"}, "dest": "/service-worker.js"},
+    {"src": "^/(.*)", "dest": "/index.html"}
   ]
 }
