@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import resources from '../../resources';
+import resources from '../../api/resources';
 import Page from '../../components/Page';
 import SearchBox from '../../components/SearchBox';
 import SearchResults from './SearchPageResults';

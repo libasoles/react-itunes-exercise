@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core';
 import get from 'lodash/get';
 
-import resources from '../../resources';
+import resources from '../../api/resources';
 import Page from '../../components/Page';
 import SearchResults from '../SearchPage/SearchPageResults';
 import NoResults from '../../components/NoResults';
