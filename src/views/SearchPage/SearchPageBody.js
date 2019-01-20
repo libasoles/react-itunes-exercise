@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
 import resources from '../../resources';
+import Page from '../../components/Page';
 import SearchBox from '../../components/SearchBox';
 import SearchResults from './SearchPageResults';
+import NoResults from '../../components/NoResults';
 
 class SearchPageBody extends Component {
   constructor() {
@@ -27,8 +29,16 @@ class SearchPageBody extends Component {
         });
       })
       .catch((response) => {
+        this.reset();
         console.error(response);
       });
+  }
+
+  reset = () => {
+    this.setState({
+      term: '',
+      items: [],
+    });
   }
 
   handleSearchTermChange = (event) => {
@@ -40,11 +50,15 @@ class SearchPageBody extends Component {
   render() {
     const { term, items } = this.state;
 
+    if (!items.length) {
+      return <NoResults />;
+    }
+
     return (
-      <React.Fragment>
+      <Page>
         <SearchBox term={term} handleChange={this.handleSearchTermChange} />
         <SearchResults items={items} />
-      </React.Fragment>
+      </Page>
     );
   }
 }
