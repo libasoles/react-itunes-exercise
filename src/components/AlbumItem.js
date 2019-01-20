@@ -46,7 +46,7 @@ const AlbumItem = (props) => {
         title={title}
       />
       <CardContent className={classes.cardContent}>
-        <Typography noWrap variant="title" className={classes.title}>
+        <Typography noWrap variant="h6" className={classes.title}>
           { title }
         </Typography>
         <Typography noWrap variant="subtitle1" className={classes.subtitle}>

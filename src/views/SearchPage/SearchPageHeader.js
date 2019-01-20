@@ -16,7 +16,7 @@ function SearchPageHeader({ classes, title }) {
   return (
     <header className={classes.header}>
       <img src={logo} alt="logo" />
-      <Typography variant="title" color="inherit">
+      <Typography variant="h6" color="secondary">
         {title}
       </Typography>
     </header>

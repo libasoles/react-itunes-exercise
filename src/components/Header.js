@@ -4,13 +4,12 @@ import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { withStyles } from '@material-ui/core/styles';
-import blue from '@material-ui/core/colors/blue';
 
 import logo from '../logo.png';
 
 const styles = theme => ({
   appBar: {
-    background: blue[500],
+    background: theme.primary,
   },
   logo: {
     width: '50px',
