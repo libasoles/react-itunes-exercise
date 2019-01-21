@@ -1,23 +1,29 @@
 import axios from 'axios';
 import get from 'lodash/get';
 
-import { transform } from './transformers';
-
-const itunesApiBaseUrl = 'https://itunes.apple.com';
+import { getTransformerFor } from './transformers';
 
 class Api {
-  fetchAlbums = (filters) => {
+  constructor() {
+    this.itunesApiBaseUrl = 'https://itunes.apple.com';
+    this.limit = 25;
+  }
+
+  fetchAlbums = (filters = {}) => {
     const params = {
-      type: 'music',
+      media: 'music',
       entity: 'album',
       attribute: 'albumTerm',
-      limit: 25,
+      limit: this.limit,
       ...filters,
     };
 
-    return axios.get(`${itunesApiBaseUrl}/search`, { params })
+    return axios.get(`${this.itunesApiBaseUrl}/search`, { params })
       .then(response => get(response, 'data.results', []))
-      .then(data => transform('album')(data))
+      .then((albums) => {
+        const transformAlbum = getTransformerFor('album');
+        return albums.map(transformAlbum);
+      })
       .catch(console.error);
   }
 
@@ -25,17 +31,44 @@ class Api {
     const params = {
       id,
       entity: 'album',
+      limit: this.limit,
       ...filters,
     };
 
-    return axios.get(`${itunesApiBaseUrl}/lookup`, { params })
+    return axios.get(`${this.itunesApiBaseUrl}/lookup`, { params })
       .then(response => get(response, 'data.results', []))
-      .then((data) => {
-        const artist = data.shift();
-        const albums = transform('album')(data);
+      .then(([artist, ...albums]) => {
+        const transformAlbum = getTransformerFor('album');
+        const transformArtist = getTransformerFor('artist');
+
         return {
-          artist: transform('artist')([artist])[0],
-          albums,
+          artist: transformArtist(artist),
+          albums: albums.map(transformAlbum),
+        };
+      })
+      .catch(console.error);
+  }
+
+  fetchSongsByAlbumId = (id, filters = {}) => {
+    const params = {
+      id,
+      media: 'music',
+      entity: 'song',
+      limit: this.limit,
+      ...filters,
+    };
+
+    return axios.get(`${this.itunesApiBaseUrl}/lookup`, { params })
+      .then(response => get(response, 'data.results', []))
+      .then(([metadata, ...songs]) => {
+        const transformArtist = getTransformerFor('artist');
+        const transformAlbum = getTransformerFor('album');
+        const transformSong = getTransformerFor('song');
+
+        return {
+          artist: transformArtist(metadata),
+          album: transformAlbum(metadata),
+          songs: songs.map(transformSong),
         };
       })
       .catch(console.error);

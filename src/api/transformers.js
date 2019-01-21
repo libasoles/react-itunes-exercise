@@ -1,21 +1,30 @@
 import moment from 'moment';
 
 const transformers = {
-  album: data => data.map(x => ({
-    id: x.collectionId,
-    artistId: x.artistId,
-    title: x.collectionName,
-    subtitle: x.artistName,
-    image: x.artworkUrl100,
-    description: `${moment(x.releaseDate).year()}`,
-    link: x.artistViewUrl,
-  })),
-  artist: data => data.map(x => ({
-    id: x.artistId,
-    name: x.artistName,
-    description: `${x.primaryGenreName}`,
-    link: x.artistLinkUrl,
-  })),
+  album: data => ({
+    id: data.collectionId,
+    artistId: data.artistId,
+    title: data.collectionName,
+    subtitle: data.artistName,
+    image: data.artworkUrl100,
+    description: `${moment(data.releaseDate).year()}`,
+    link: data.collectionViewUrl,
+  }),
+  artist: data => ({
+    id: data.artistId,
+    name: data.artistName,
+    description: `${data.primaryGenreName}`,
+    link: data.artistViewUrl,
+  }),
+  song: data => ({
+    id: data.trackId,
+    albumId: data.collectionId,
+    artistId: data.artistId,
+    name: data.trackName,
+    description: `${moment(data.releaseDate).year()}`,
+    image: data.artworkUrl100,
+    link: data.trackViewUrl,
+  }),
 };
 
-export const transform = resource => transformers[resource];
+export const getTransformerFor = resource => data => transformers[resource](data);
