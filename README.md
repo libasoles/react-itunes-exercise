@@ -16,4 +16,12 @@ If you already have node version 10 or greater, just run:
 If you are running an oldest version, you can do this instead:
 `npx -p node@10 yarn install && yarn start`
 
+##  How it looks
 
+This is it, so far...
+
+![Snapshot Homepage](./assets/snapshot - page 1.png)
+
+![Snapshot Artist Albums](./assets/snapshot - page 2.png)
+
+![Snapshot Album Songs](./assets/snapshot - page 3.png)
