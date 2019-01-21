@@ -23,7 +23,7 @@ function SongsList({ classes, songs }) {
       className={classes.container}
     >
       {songs.map(song => (
-        <Grid item key={song.id} xs={12} sm={6} lg={4} xl={3}>
+        <Grid item key={song.id} xs={12} sm={12} lg={6} xl={4}>
           <Song data={song} />
         </Grid>
       ))}

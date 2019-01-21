@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core';
 import get from 'lodash/get';
 
@@ -12,7 +13,22 @@ import ArtistDescription from '../components/ArtistDescription';
 import AlbumDescription from '../components/AlbumDescription';
 
 const styles = theme => ({
-
+  container: {
+    flexDirection: 'columns',
+    alignItems: 'stretch',
+  },
+  metadata: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    margin: '20px 0 0 10px',
+  },
+  artistDescription: {
+    marginBottom: '20px',
+  },
+  songs: {
+    flex: 1,
+  },
 });
 
 class SongsPage extends Component {
@@ -55,6 +71,7 @@ class SongsPage extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     const {
       artist, album, songs, loading,
     } = this.state;
@@ -69,9 +86,21 @@ class SongsPage extends Component {
 
     return (
       <Page>
-        <ArtistDescription artist={artist} />
-        <AlbumDescription album={album} />
-        <SongsList songs={songs} />
+        <Grid container className={classes.container}>
+          <Grid item>
+            <Grid container className={classes.metadata} spacing={16}>
+              <Grid item>
+                <ArtistDescription artist={artist} />
+              </Grid>
+              <Grid item>
+                <AlbumDescription album={album} />
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item className={classes.songs}>
+            <SongsList songs={songs} />
+          </Grid>
+        </Grid>
       </Page>
     );
   }

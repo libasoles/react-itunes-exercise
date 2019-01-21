@@ -14,7 +14,7 @@ const transformers = {
     id: data.artistId,
     name: data.artistName,
     description: `${data.primaryGenreName}`,
-    link: data.artistViewUrl,
+    link: data.artistLinkUrl || data.artistViewUrl,
   }),
   song: data => ({
     id: data.trackId,
@@ -22,6 +22,7 @@ const transformers = {
     artistId: data.artistId,
     name: data.trackName,
     description: `${moment(data.releaseDate).year()}`,
+    time: moment.utc(data.trackTimeMillis),
     image: data.artworkUrl100,
     link: data.trackViewUrl,
   }),
