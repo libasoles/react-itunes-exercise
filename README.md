@@ -20,8 +20,17 @@ If you are running an oldest version, you can do this instead:
 
 This is it, so far...
 
-![Snapshot Homepage](./assets/snapshot - page 1.png)
 
-![Snapshot Artist Albums](./assets/snapshot - page 2.png)
+_Homepage_
 
-![Snapshot Album Songs](./assets/snapshot - page 3.png)
+![](./assets/snapshot%20-%20page%201.png)
+
+
+_Artist albums_
+
+![](./assets/snapshot%20-%20page%202.png)
+
+
+_Album songs_
+
+![](./assets/snapshot%20-%20page%203.png)
