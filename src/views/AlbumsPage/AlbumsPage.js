@@ -7,7 +7,7 @@ import resources from '../../api/resources';
 import Page from '../../components/Page';
 import SearchResults from '../SearchPage/SearchPageResults';
 import NoResults from '../../components/NoResults';
-import ArtistDescription from './ArtistDescription';
+import ArtistDescription from '../components/ArtistDescription';
 import Loading from '../../components/Loading';
 
 const styles = theme => ({

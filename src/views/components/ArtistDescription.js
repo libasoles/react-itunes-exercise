@@ -40,6 +40,11 @@ function ArtistDescription({ classes, artist }) {
 
 ArtistDescription.propTypes = {
   classes: PropTypes.shape({}).isRequired,
+  artist: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default withStyles(styles)(ArtistDescription);
