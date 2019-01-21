@@ -25,9 +25,7 @@ function App({ classes }) {
       <BrowserRouter>
         <Grid container className={classes.container}>
           <Header title="iTunes discovery" />
-          <main>
-            <Routes />
-          </main>
+          <Routes />
         </Grid>
       </BrowserRouter>
     </MuiThemeProvider>

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import SearchPage from './views/SearchPage';
-import AlbumsPage from './views/AlbumsPage';
-import SongsPage from './views/SongsPage';
+import SearchPage from './pages/SearchPage';
+import AlbumsPage from './pages/AlbumsPage';
+import SongsPage from './pages/SongsPage';
 
 function Routes() {
   return (

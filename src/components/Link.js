@@ -29,7 +29,7 @@ LinkWrapper.propTypes = {
   to: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.element,
+    PropTypes.node,
   ]).isRequired,
 };
 

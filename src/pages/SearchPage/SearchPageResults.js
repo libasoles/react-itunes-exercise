@@ -37,8 +37,11 @@ function SearchPageResults({ classes, items }) {
 SearchPageResults.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   items: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    artistId: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
   })).isRequired,
 };

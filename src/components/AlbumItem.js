@@ -46,7 +46,7 @@ const styles = theme => ({
 const AlbumItem = (props) => {
   const { classes, item } = props;
   const {
-    id, image, title, subtitle, description,
+    id, artistId, image, title, subtitle, description,
   } = item;
 
   return (
@@ -67,7 +67,7 @@ const AlbumItem = (props) => {
               { title }
             </Typography>
           </Link>
-          <Link to={`/artist/${id}/album`} size="small">
+          <Link to={`/artist/${artistId}/album`} size="small">
             <Typography noWrap variant="subtitle1" className={classes.subtitle}>
               { subtitle }
             </Typography>
@@ -84,6 +84,8 @@ const AlbumItem = (props) => {
 AlbumItem.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   item: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    artistId: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
