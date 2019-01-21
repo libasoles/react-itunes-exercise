@@ -23,7 +23,7 @@ const styles = theme => ({
 const Song = (props) => {
   const { classes, data } = props;
   const {
-    id, name, description,
+    id, name, description, time,
   } = data;
 
   return (
@@ -36,6 +36,9 @@ const Song = (props) => {
       </Link>
       <Typography className={classes.description}>
         { description }
+      </Typography>
+      <Typography className={classes.description}>
+        { time.format('mm:ss') }
       </Typography>
 
     </Grid>
