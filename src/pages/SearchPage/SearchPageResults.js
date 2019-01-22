@@ -12,8 +12,7 @@ const styles = theme => ({
     marginRight: 'auto',
     padding: '30px 3em',
     display: 'flex',
-  },
-  noResults: {
+
   },
   item: {
     margin: '3px',
@@ -21,6 +20,10 @@ const styles = theme => ({
 });
 
 function SearchPageResults({ classes, items }) {
+  if (!items.length) {
+    return <NoResults />;
+  }
+
   return (
     <Grid
       container
@@ -28,8 +31,6 @@ function SearchPageResults({ classes, items }) {
       alignItems="stretch"
       justify="center"
     >
-      {!items.length && <NoResults className={classes.noResults} />}
-
       {items.map(item => (
         <Grid item key={item.id} className={classes.item}>
           <AlbumItem key={item.id} item={item} />

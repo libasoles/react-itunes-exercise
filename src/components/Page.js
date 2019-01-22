@@ -5,6 +5,9 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = {
   page: {
     paddingTop: '20px',
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
   },
 };
 
