@@ -52,8 +52,7 @@ class SearchPage extends Component {
         ...state.filters,
         [name]: value,
       },
-    }));
-    this.fetchData();
+    }), () => this.fetchData());
   }
 
   persistFilters = (filters) => {
@@ -75,12 +74,13 @@ class SearchPage extends Component {
           items,
           loading: false,
         });
-        this.persistFilters(filters);
       })
       .catch((response) => {
         this.reset();
         console.error(response);
       });
+
+    this.persistFilters(filters);
   }
 
   render() {
