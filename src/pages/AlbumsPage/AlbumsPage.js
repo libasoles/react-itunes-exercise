@@ -37,8 +37,7 @@ class AlbumsPage extends Component {
   componentDidMount() {
     const { id } = get(this.props, 'match.params');
 
-
-    resources.fetchAlbumsByArtistId(id, filters)
+    resources.fetchAlbumsByArtistId(id)
       .then((data) => {
         this.setState({
           artist: data.artist,

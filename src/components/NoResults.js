@@ -23,7 +23,7 @@ function NoResults({ classes }) {
     >
       <OfflineBolt color="secondary">no_results</OfflineBolt>
       <Typography variant="h6" color="secondary" noWrap>
-  Sorry, no results
+  Lo siento, no hay resultados
       </Typography>
     </Grid>
   );
