@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core';
-import PropTypes from 'prop-types';
 
 import AlbumItem from '../../components/AlbumItem';
+import NoResults from '../../components/NoResults';
 
 const styles = theme => ({
   container: {
@@ -11,6 +12,8 @@ const styles = theme => ({
     marginRight: 'auto',
     padding: '30px 3em',
     display: 'flex',
+  },
+  noResults: {
   },
   item: {
     margin: '3px',
@@ -25,6 +28,8 @@ function SearchPageResults({ classes, items }) {
       alignItems="stretch"
       justify="center"
     >
+      {!items.length && <NoResults className={classes.noResults} />}
+
       {items.map(item => (
         <Grid item key={item.id} className={classes.item}>
           <AlbumItem key={item.id} item={item} />
