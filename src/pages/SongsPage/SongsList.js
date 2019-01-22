@@ -17,8 +17,7 @@ function SongsList({ classes, songs }) {
   return (
     <Grid
       container
-      spacing={24}
-      style={{ padding: 24 }}
+      spacing={16}
       className={classes.container}
     >
       {songs.map(song => (
