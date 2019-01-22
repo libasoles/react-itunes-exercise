@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import theme from './theme';
 import Routes from './routes';
 import Header from './components/Header';
+import { ConfigContext, config } from './config';
 
 const styles = () => ({
   container: {
@@ -24,10 +25,12 @@ function App({ classes }) {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <BrowserRouter>
-        <Grid container className={classes.container}>
-          <Header title="iTunes discovery" />
-          <Routes />
-        </Grid>
+        <ConfigContext.Provider value={config}>
+          <Grid container className={classes.container}>
+            <Header title="iTunes discovery" />
+            <Routes />
+          </Grid>
+        </ConfigContext.Provider>
       </BrowserRouter>
     </MuiThemeProvider>
   );

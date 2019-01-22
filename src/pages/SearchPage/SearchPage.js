@@ -10,6 +10,7 @@ import SearchBox from './SearchFilters';
 import SearchResults from './SearchPageResults';
 import ArtistItem from '../components/ArtistItem';
 import AlbumItem from '../components/AlbumItem';
+import { WithConfig } from '../../config';
 
 class SearchPage extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class SearchPage extends Component {
     this.defaultFilters = {
       term: '',
       type: 'album',
+      offset: 0,
     };
 
     const filters = queryString.parse(props.location.search);
@@ -46,11 +48,14 @@ class SearchPage extends Component {
 
   handleFiltersChange = (event) => {
     const { name, value } = event.target;
+    const { config } = this.props;
+
     this.setState(state => ({
       ...state,
       filters: {
         ...state.filters,
         [name]: value,
+        offset: state.filters.offset + config.itemsPerPage,
       },
     }), () => this.fetchData());
   };
@@ -106,6 +111,7 @@ class SearchPage extends Component {
 SearchPage.propTypes = {
   history: PropTypes.shape({}).isRequired,
   location: PropTypes.shape({}).isRequired,
+  config: PropTypes.shape({}).isRequired,
 };
 
-export default SearchPage;
+export default WithConfig(SearchPage);
