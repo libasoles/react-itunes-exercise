@@ -20,7 +20,7 @@ function LinkWrapper({
   to, children, classes, className, ...rest
 }) {
   return (
-    <Button className={classes.button} component={Link} to={to} {...rest}>{ children }</Button>
+    <Button className={`${className} ${classes.button}`} component={Link} to={to} {...rest}>{ children }</Button>
   );
 }
 

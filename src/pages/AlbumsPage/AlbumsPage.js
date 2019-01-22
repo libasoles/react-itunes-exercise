@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core';
 import get from 'lodash/get';
 
@@ -9,9 +10,17 @@ import SearchResults from '../SearchPage/SearchPageResults';
 import NoResults from '../../components/NoResults';
 import ArtistDescription from '../components/ArtistDescription';
 import Loading from '../../components/Loading';
+import AlbumItem from '../components/AlbumItem';
+import BackButton from '../../components/BackButton';
 
 const styles = theme => ({
-
+  artist: {
+    marginTop: '10px',
+  },
+  backButton: {
+    position: 'absolute',
+    right: '60px',
+  },
 });
 
 class AlbumsPage extends Component {
@@ -51,6 +60,7 @@ class AlbumsPage extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     const { artist, items, loading } = this.state;
 
     if (loading) {
@@ -63,8 +73,11 @@ class AlbumsPage extends Component {
 
     return (
       <Page>
-        <ArtistDescription artist={artist} />
-        <SearchResults items={items} />
+        <BackButton className={classes.backButton} />
+        <Grid item className={classes.artist}>
+          <ArtistDescription artist={artist} />
+        </Grid>
+        <SearchResults items={items} component={<AlbumItem />} />
       </Page>
     );
   }

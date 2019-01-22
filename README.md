@@ -23,14 +23,14 @@ This is it, so far...
 
 _Homepage_
 
-![](./assets/snapshot%20-%20page%201.png)
+![](snapshots/snapshot%20-%20page%201.png)
 
 
 _Artist albums_
 
-![](./assets/snapshot%20-%20page%202.png)
+![](snapshots/snapshot%20-%20page%202.png)
 
 
 _Album songs_
 
-![](./assets/snapshot%20-%20page%203.png)
+![](snapshots/snapshot%20-%20page%203.png)

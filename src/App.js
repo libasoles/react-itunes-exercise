@@ -15,6 +15,7 @@ const styles = theme => ({
     textAlign: 'center',
     display: 'flex',
     flexDirection: 'column',
+    minHeight: '100%',
   },
 });
 

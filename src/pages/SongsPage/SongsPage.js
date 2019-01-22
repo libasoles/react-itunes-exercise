@@ -11,6 +11,7 @@ import Loading from '../../components/Loading';
 import SongsList from './SongsList';
 import ArtistDescription from '../components/ArtistDescription';
 import AlbumDescription from '../components/AlbumDescription';
+import BackButton from '../../components/BackButton';
 
 const styles = theme => ({
   container: {
@@ -28,6 +29,10 @@ const styles = theme => ({
   },
   songs: {
     flex: 1,
+  },
+  backButton: {
+    position: 'absolute',
+    right: '60px',
   },
 });
 
@@ -86,6 +91,7 @@ class SongsPage extends Component {
 
     return (
       <Page>
+        <BackButton className={classes.backButton} />
         <Grid container className={classes.container}>
           <Grid item>
             <Grid container className={classes.metadata} spacing={16}>

@@ -7,10 +7,9 @@ import Song from './Song';
 
 const styles = theme => ({
   container: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    padding: '30px 3em',
+    marginLeft: '30px',
     display: 'flex',
+    maxWidth: '500px',
   },
 });
 
@@ -18,12 +17,11 @@ function SongsList({ classes, songs }) {
   return (
     <Grid
       container
-      spacing={24}
-      style={{ padding: 24 }}
+      spacing={16}
       className={classes.container}
     >
       {songs.map(song => (
-        <Grid item key={song.id} xs={12} sm={12} lg={6} xl={4}>
+        <Grid item key={song.id} xs={12}>
           <Song data={song} />
         </Grid>
       ))}
