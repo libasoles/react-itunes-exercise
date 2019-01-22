@@ -33,11 +33,11 @@ function SearchPageResults({ classes, items, component }) {
       {items.map(item => (
         <Grid item key={item.id} className={classes.item}>
           <React.Fragment>
-          {
-            React.cloneElement(component, {
-              item,
-            })
-          }
+            {
+              React.cloneElement(component, {
+                item,
+              })
+            }
           </React.Fragment>
         </Grid>
       ))}
@@ -48,6 +48,7 @@ function SearchPageResults({ classes, items, component }) {
 SearchPageResults.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  component: PropTypes.element.isRequired,
 };
 
 export default withStyles(styles)(SearchPageResults);
