@@ -25,7 +25,7 @@ class Api {
         return albums.map(transformAlbum);
       })
       .catch(console.error);
-  }
+  };
 
   fetchArtists = (filters = {}) => {
     const params = {
@@ -43,7 +43,7 @@ class Api {
         return artists.map(transformArtist);
       })
       .catch(console.error);
-  }
+  };
 
   fetchAlbumsByArtistId = (id, filters = {}) => {
     const params = {
@@ -65,7 +65,7 @@ class Api {
         };
       })
       .catch(console.error);
-  }
+  };
 
   fetchSongsByAlbumId = (id, filters = {}) => {
     const params = {

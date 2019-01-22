@@ -42,7 +42,7 @@ class SearchPage extends Component {
       items: [],
       loading: false,
     });
-  }
+  };
 
   handleFiltersChange = (event) => {
     const { name, value } = event.target;
@@ -53,14 +53,14 @@ class SearchPage extends Component {
         [name]: value,
       },
     }), () => this.fetchData());
-  }
+  };
 
   persistFilters = (filters) => {
     const { history } = this.props;
     history.push({
       search: queryString.stringify(filters),
     });
-  }
+  };
 
   fetchData() {
     const { filters } = this.state;
