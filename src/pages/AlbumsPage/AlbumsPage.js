@@ -11,10 +11,15 @@ import NoResults from '../../components/NoResults';
 import ArtistDescription from '../components/ArtistDescription';
 import Loading from '../../components/Loading';
 import AlbumItem from '../components/AlbumItem';
+import BackButton from '../../components/BackButton';
 
 const styles = theme => ({
   artist: {
     marginTop: '10px',
+  },
+  backButton: {
+    position: 'absolute',
+    right: '60px',
   },
 });
 
@@ -68,6 +73,7 @@ class AlbumsPage extends Component {
 
     return (
       <Page>
+        <BackButton className={classes.backButton} />
         <Grid item className={classes.artist}>
           <ArtistDescription artist={artist} />
         </Grid>
