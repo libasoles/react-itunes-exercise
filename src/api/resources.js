@@ -27,6 +27,24 @@ class Api {
       .catch(console.error);
   }
 
+  fetchArtists = (filters = {}) => {
+    const params = {
+      media: 'music',
+      entity: 'musicArtist',
+      attribute: 'artistTerm',
+      limit: this.limit,
+      ...filters,
+    };
+
+    return axios.get(`${this.itunesApiBaseUrl}/search`, { params })
+      .then(response => get(response, 'data.results', []))
+      .then((artists) => {
+        const transformArtist = getTransformerFor('artist');
+        return artists.map(transformArtist);
+      })
+      .catch(console.error);
+  }
+
   fetchAlbumsByArtistId = (id, filters = {}) => {
     const params = {
       id,

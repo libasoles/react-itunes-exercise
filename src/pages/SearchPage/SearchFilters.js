@@ -24,7 +24,7 @@ const styles = theme => ({
   },
 });
 
-function SearchBox({
+function SearchFilters({
   classes, term, placeholder, type, handleChange,
 }) {
   return (
@@ -55,7 +55,7 @@ function SearchBox({
   );
 }
 
-SearchBox.propTypes = {
+SearchFilters.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   placeholder: PropTypes.string,
   term: PropTypes.string,
@@ -63,10 +63,10 @@ SearchBox.propTypes = {
   handleChange: PropTypes.func.isRequired,
 };
 
-SearchBox.defaultProps = {
+SearchFilters.defaultProps = {
   term: '',
   placeholder: 'Buscá tu música...',
-  type: 'artist',
+  type: 'album',
 };
 
-export default withStyles(styles)(SearchBox);
+export default withStyles(styles)(SearchFilters);

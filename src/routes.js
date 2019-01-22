@@ -9,8 +9,8 @@ function Routes() {
   return (
     <Switch>
       <Route exact path="/" component={SearchPage} />
-      <Route path="/artist/:id/album" component={AlbumsPage} />
-      <Route path="/album/:id/songs" component={SongsPage} />
+      <Route path="/artists/:id/albums" component={AlbumsPage} />
+      <Route path="/albums/:id/songs" component={SongsPage} />
     </Switch>
   );
 }

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core';
 
-import AlbumItem from '../../components/AlbumItem';
 import NoResults from '../../components/NoResults';
 
 const styles = theme => ({
@@ -19,7 +18,7 @@ const styles = theme => ({
   },
 });
 
-function SearchPageResults({ classes, items }) {
+function SearchPageResults({ classes, items, component }) {
   if (!items.length) {
     return <NoResults />;
   }
@@ -33,7 +32,13 @@ function SearchPageResults({ classes, items }) {
     >
       {items.map(item => (
         <Grid item key={item.id} className={classes.item}>
-          <AlbumItem key={item.id} item={item} />
+          <React.Fragment>
+          {
+            React.cloneElement(component, {
+              item,
+            })
+          }
+          </React.Fragment>
         </Grid>
       ))}
     </Grid>
@@ -42,14 +47,7 @@ function SearchPageResults({ classes, items }) {
 
 SearchPageResults.propTypes = {
   classes: PropTypes.shape({}).isRequired,
-  items: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    artistId: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    subtitle: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-  })).isRequired,
+  items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default withStyles(styles)(SearchPageResults);

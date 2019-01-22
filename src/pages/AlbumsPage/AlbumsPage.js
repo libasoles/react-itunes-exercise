@@ -10,6 +10,7 @@ import SearchResults from '../SearchPage/SearchPageResults';
 import NoResults from '../../components/NoResults';
 import ArtistDescription from '../components/ArtistDescription';
 import Loading from '../../components/Loading';
+import AlbumItem from '../components/AlbumItem';
 
 const styles = theme => ({
   artist: {
@@ -70,7 +71,7 @@ class AlbumsPage extends Component {
         <Grid item className={classes.artist}>
           <ArtistDescription artist={artist} />
         </Grid>
-        <SearchResults items={items} />
+        <SearchResults items={items} component={<AlbumItem />} />
       </Page>
     );
   }
