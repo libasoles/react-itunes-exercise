@@ -13,7 +13,7 @@ import Loading from '../../components/Loading';
 import AlbumItem from '../components/AlbumItem';
 import BackButton from '../../components/BackButton';
 
-const styles = theme => ({
+const styles = () => ({
   artist: {
     marginTop: '10px',
   },

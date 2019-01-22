@@ -9,7 +9,7 @@ import theme from './theme';
 import Routes from './routes';
 import Header from './components/Header';
 
-const styles = theme => ({
+const styles = () => ({
   container: {
     background: '#757575',
     textAlign: 'center',

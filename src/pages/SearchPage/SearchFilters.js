@@ -7,7 +7,7 @@ import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { withStyles } from '@material-ui/core';
 
-const styles = theme => ({
+const styles = () => ({
   container: {
     justifyContent: 'center',
     alignItems: 'flex-end',

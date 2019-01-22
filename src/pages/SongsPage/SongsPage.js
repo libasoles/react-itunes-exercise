@@ -13,7 +13,7 @@ import ArtistDescription from '../components/ArtistDescription';
 import AlbumDescription from '../components/AlbumDescription';
 import BackButton from '../../components/BackButton';
 
-const styles = theme => ({
+const styles = () => ({
   container: {
     flexDirection: 'columns',
     alignItems: 'stretch',

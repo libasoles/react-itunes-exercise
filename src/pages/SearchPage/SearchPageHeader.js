@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import logo from '../../logo.png';
 
-const styles = theme => ({
+const styles = () => ({
   header: {
     position: 'relative',
     padding: '20px',

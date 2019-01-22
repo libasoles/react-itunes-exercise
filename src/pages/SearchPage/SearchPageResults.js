@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core';
 
 import NoResults from '../../components/NoResults';
 
-const styles = theme => ({
+const styles = () => ({
   container: {
     marginLeft: 'auto',
     marginRight: 'auto',

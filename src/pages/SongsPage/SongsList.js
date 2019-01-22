@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import Song from './Song';
 
-const styles = theme => ({
+const styles = () => ({
   container: {
     marginLeft: '30px',
     display: 'flex',
