@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
-import logo from '../../logo.png';
+import { Logo } from '../../components/Logo';
 
 const styles = () => ({
   header: {
@@ -15,7 +15,7 @@ const styles = () => ({
 function SearchPageHeader({ classes, title }) {
   return (
     <header className={classes.header}>
-      <img src={logo} alt="logo" />
+      <Logo />
       <Typography variant="h6" color="secondary">
         {title}
       </Typography>
