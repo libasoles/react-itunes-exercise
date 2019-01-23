@@ -66,7 +66,7 @@ class AlbumsPage extends Component {
     }));
   }
 
-  handleErrorResponse = (response) => {
+  handleErrorResponse = () => {
     this.setState({
       artist: {},
       albums: [],

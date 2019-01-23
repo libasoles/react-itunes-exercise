@@ -125,6 +125,8 @@ class SearchPage extends Component {
   }
 
   render() {
+    const { config } = this.props;
+    const { locale } = config;
     const {
       filters, items, shouldLoadMore, loading,
     } = this.state;
@@ -138,8 +140,12 @@ class SearchPage extends Component {
 
     return (
       <Page>
-        <SearchPageHeader title="Qué querés escuchar hoy?" />
-        <SearchBox {...filters} handleChange={this.handleFiltersChange} />
+        <SearchPageHeader title={locale.homepageCTA} />
+        <SearchBox
+          locale={locale}
+          handleChange={this.handleFiltersChange}
+          {...filters}
+        />
         { (!items.length && term !== '') && <NoResults /> }
         <SearchResults items={items} component={component} />
         { shouldLoadMore && <MoreResults handleChange={this.fetchData} /> }

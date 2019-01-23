@@ -1,12 +1,16 @@
 {
   "extends": "airbnb",
   "env": {
-  "browser": true,
-    "node": true
-},
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
   "rules": {
   "import/prefer-default-export": false,
-  "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+  "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+  "no-console": [
+    "error", { "allow": ["warn", "error"] }
+  ],
 },
   "settings": {
   "import/resolver": {

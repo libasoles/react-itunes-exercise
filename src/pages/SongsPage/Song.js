@@ -4,10 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import { withStyles } from '@material-ui/core';
-
 import Link from '@material-ui/core/Link';
-
+import { withStyles } from '@material-ui/core';
 
 const styles = () => ({
   container: {

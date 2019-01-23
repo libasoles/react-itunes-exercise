@@ -18,6 +18,7 @@
   "scripts": {
     "start": "PORT=3002 react-scripts start",
     "build": "react-scripts build",
+    "lint": "eslint src",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "now-build": "react-scripts build && mv build dist"
