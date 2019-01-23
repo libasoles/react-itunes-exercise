@@ -1,9 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 import { BrowserRouter } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid/Grid';
-import PropTypes from 'prop-types';
 
 import theme from './theme';
 import Routes from './routes';

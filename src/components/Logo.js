@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import logo from '../logo.png';
 
 export function Logo(props) {

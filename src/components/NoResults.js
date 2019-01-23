@@ -1,9 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography/Typography';
 import { OfflineBolt } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core';
-import PropTypes from 'prop-types';
 
 import { WithConfig } from '../config';
 
