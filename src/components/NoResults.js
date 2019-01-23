@@ -5,6 +5,8 @@ import { OfflineBolt } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
+import { WithConfig } from '../config';
+
 const styles = () => ({
   noResults: {
     display: 'flex',
@@ -15,7 +17,8 @@ const styles = () => ({
   },
 });
 
-function NoResults({ classes }) {
+function NoResults({ classes, config }) {
+  const { locale } = config;
   return (
     <Grid
       container
@@ -23,7 +26,7 @@ function NoResults({ classes }) {
     >
       <OfflineBolt color="secondary">no_results</OfflineBolt>
       <Typography variant="h6" color="secondary" noWrap>
-  Lo siento, no hay resultados
+        {locale.noResults}
       </Typography>
     </Grid>
   );
@@ -31,6 +34,8 @@ function NoResults({ classes }) {
 
 NoResults.propTypes = {
   classes: PropTypes.shape({}).isRequired,
+  config: PropTypes.shape({}).isRequired,
 };
 
-export default withStyles(styles)(NoResults);
+const WrappedComponent = WithConfig(NoResults);
+export default withStyles(styles)(WrappedComponent);

@@ -27,7 +27,7 @@ function App({ classes }) {
       <BrowserRouter>
         <ConfigContext.Provider value={config}>
           <Grid container className={classes.container}>
-            <Header title="iTunes discovery" />
+            <Header title={config.locale.projectTitle} />
             <Routes />
           </Grid>
         </ConfigContext.Provider>

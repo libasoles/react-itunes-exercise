@@ -25,7 +25,7 @@ const styles = () => ({
 });
 
 function SearchFilters({
-  classes, term, placeholder, type, handleChange,
+  classes, term, locale, type, handleChange,
 }) {
   return (
     <Grid container className={classes.container}>
@@ -37,13 +37,13 @@ function SearchFilters({
         onChange={handleChange}
         className={classes.radioGroup}
       >
-        <FormControlLabel value="artist" control={<Radio className={classes.radio} />} label="Artistas" />
-        <FormControlLabel value="album" control={<Radio className={classes.radio} />} label="Albums" />
+        <FormControlLabel value="artist" control={<Radio className={classes.radio} />} label={locale.artists} />
+        <FormControlLabel value="album" control={<Radio className={classes.radio} />} label={locale.albums} />
       </RadioGroup>
 
       <TextField
         name="term"
-        label={placeholder}
+        label={locale.searcherPlaceholder}
         type="search"
         autoFocus
         margin="normal"
@@ -57,7 +57,7 @@ function SearchFilters({
 
 SearchFilters.propTypes = {
   classes: PropTypes.shape({}).isRequired,
-  placeholder: PropTypes.string,
+  locale: PropTypes.shape({}),
   term: PropTypes.string,
   type: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
@@ -65,7 +65,10 @@ SearchFilters.propTypes = {
 
 SearchFilters.defaultProps = {
   term: '',
-  placeholder: 'Buscá tu música...',
+  locale: {
+    artists: 'Artists',
+    albums: 'Albums',
+  },
   type: 'album',
 };
 
