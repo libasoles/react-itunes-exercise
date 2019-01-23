@@ -67,8 +67,10 @@ class SearchPage extends Component {
 
   persistFilters = (filters) => {
     const { history } = this.props;
+    const usefulFilters = { ...filters };
+    delete usefulFilters.offset;
     history.push({
-      search: queryString.stringify(filters),
+      search: queryString.stringify(usefulFilters),
     });
   };
 
