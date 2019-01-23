@@ -31,6 +31,14 @@ const styles = () => ({
     flexDirection: 'column',
     padding: 0,
     margin: 0,
+    alignItems: 'flex-start',
+    textAlign: 'left',
+  },
+  link: {
+    textAlign: 'left',
+    justifyContent: 'flex-start',
+    margin: 0,
+    width: '100%',
   },
   title: {
     fontSize: '0.8em',
@@ -40,6 +48,8 @@ const styles = () => ({
   },
   description: {
     fontSize: '0.7em',
+    textAlign: 'left',
+    justifyContent: 'flex-start',
   },
 });
 
@@ -62,12 +72,12 @@ const AlbumItem = (props) => {
       </CardActionArea>
       <CardContent className={classes.cardContent}>
         <CardActions className={classes.cardActions}>
-          <Link to={`/albums/${id}/songs`} size="large">
+          <Link to={`/albums/${id}/songs`} size="large" className={classes.link}>
             <Typography noWrap variant="h6" className={classes.title}>
               { title }
             </Typography>
           </Link>
-          <Link to={`/artists/${artistId}/albums`} size="small">
+          <Link to={`/artists/${artistId}/albums`} size="small" className={classes.link}>
             <Typography noWrap variant="subtitle1" className={classes.subtitle}>
               { subtitle }
             </Typography>
