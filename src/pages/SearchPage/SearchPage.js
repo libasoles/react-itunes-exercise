@@ -13,6 +13,7 @@ import ArtistItem from '../components/ArtistItem';
 import AlbumItem from '../components/AlbumItem';
 import MoreResults from '../../components/MoreResults';
 import { mergeWithoutDuplicates } from '../../helpers/merge';
+import NoResults from '../../components/NoResults';
 
 class SearchPage extends Component {
   defaultFilters = {
@@ -132,13 +133,14 @@ class SearchPage extends Component {
       return <Loading />;
     }
 
-    const { type } = filters;
+    const { term, type } = filters;
     const component = type === 'artist' ? <ArtistItem /> : <AlbumItem />;
 
     return (
       <Page>
         <SearchPageHeader title="Qué querés escuchar hoy?" />
         <SearchBox {...filters} handleChange={this.handleFiltersChange} />
+        { (!items.length && term !== '') && <NoResults /> }
         <SearchResults items={items} component={component} />
         { shouldLoadMore && <MoreResults handleChange={this.fetchData} /> }
       </Page>
