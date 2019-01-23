@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import queryString from 'query-string';
 import PropTypes from 'prop-types';
-import uniqBy from 'lodash/uniqBy';
 
 import { WithConfig } from '../../config';
 import resources from '../../api/resources';
@@ -13,22 +12,23 @@ import SearchResults from './SearchPageResults';
 import ArtistItem from '../components/ArtistItem';
 import AlbumItem from '../components/AlbumItem';
 import MoreResults from '../../components/MoreResults';
+import { mergeWithoutDuplicates } from '../../helpers/merge';
 
 class SearchPage extends Component {
+  defaultFilters = {
+    term: '',
+    type: 'album',
+    offset: 0,
+  };
+
+  defaultState = {
+    items: [],
+    shouldLoadMore: false,
+    loading: true,
+  };
+
   constructor(props) {
     super(props);
-
-    this.defaultFilters = {
-      term: '',
-      type: 'album',
-      offset: 0,
-    };
-
-    this.defaultState = {
-      items: [],
-      shouldLoadMore: false,
-      loading: true,
-    };
 
     const filters = queryString.parse(props.location.search);
 
@@ -84,20 +84,19 @@ class SearchPage extends Component {
   }
 
   handleSuccessfulResponse = (items = []) => {
-    const { filters } = this.state;
-
     this.setState(state => ({
       filters: {
         ...state.filters,
-        offset: this.calculateNewOffset(filters.offset),
+        offset: this.calculateNewOffset(state.filters.offset),
       },
       items: this.shouldResetCurrentResults(state.filters.offset)
-        ? items : this.mergeItems(state.items, items),
+        ? items : mergeWithoutDuplicates(state.items, items),
       shouldLoadMore: this.shouldLoadMoreItems(items),
       loading: false,
-    }));
-
-    this.persistFilters(filters);
+    }), () => {
+      const { filters } = this.state;
+      this.persistFilters(filters);
+    });
   }
 
   handleErrorResponse = (response) => {
@@ -105,27 +104,21 @@ class SearchPage extends Component {
     this.reset();
   }
 
-  shouldResetCurrentResults(offset) {
-    return offset === 0;
+  shouldLoadMoreItems = (items) => {
+    const { config } = this.props;
+    const expectedLength = Number(config.itemsPerPage);
+
+    return items.length === expectedLength;
   }
 
-  shouldLoadMoreItems(items) {
+  calculateNewOffset = (existingOffset) => {
     const { config } = this.props;
-    return items.length === Number(config.itemsPerPage);
-  }
 
-  calculateNewOffset(existingOffset) {
-    const { config } = this.props;
     return Number(existingOffset) + Number(config.itemsPerPage);
   }
 
-  mergeItems(preexistingItems, newItems) {
-    const mergedItems = [
-      ...preexistingItems,
-      ...newItems,
-    ];
-
-    return uniqBy(mergedItems, item => item.id);
+  shouldResetCurrentResults(offset) {
+    return offset === 0;
   }
 
   render() {
