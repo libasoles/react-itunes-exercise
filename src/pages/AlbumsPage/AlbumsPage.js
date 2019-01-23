@@ -23,6 +23,9 @@ const styles = () => ({
   backButton: {
     position: 'absolute',
     right: '60px',
+    '@media (max-width: 767px)': {
+      display: 'none',
+    },
   },
 });
 

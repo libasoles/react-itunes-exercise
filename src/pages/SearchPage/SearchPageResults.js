@@ -11,7 +11,6 @@ const styles = () => ({
     marginRight: 'auto',
     padding: '30px 3em',
     display: 'flex',
-
   },
   item: {
     margin: '3px',
