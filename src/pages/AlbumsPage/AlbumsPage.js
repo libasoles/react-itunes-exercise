@@ -49,7 +49,7 @@ class AlbumsPage extends Component {
   fetchData = () => {
     const { id } = get(this.props, 'match.params');
     const { offset } = this.state;
-    const filters = { offset };
+    const filters = { offset, limit: null };
 
     resources.fetchAlbumsByArtistId(id, filters)
       .then(this.handleSuccessfulResponse)

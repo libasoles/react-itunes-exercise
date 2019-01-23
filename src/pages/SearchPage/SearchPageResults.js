@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core';
 
-import NoResults from '../../components/NoResults';
-
 const styles = () => ({
   container: {
     marginLeft: 'auto',
@@ -18,10 +16,6 @@ const styles = () => ({
 });
 
 function SearchPageResults({ classes, items, component }) {
-  if (!items.length) {
-    return <NoResults />;
-  }
-
   return (
     <Grid
       container

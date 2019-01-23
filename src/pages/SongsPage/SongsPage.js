@@ -57,9 +57,7 @@ class SongsPage extends Component {
   componentDidMount() {
     const { id } = get(this.props, 'match.params');
 
-    const filters = {
-      limit: 25,
-    };
+    const filters = { limit: null };
 
     resources.fetchSongsByAlbumId(id, filters)
       .then((data) => {
