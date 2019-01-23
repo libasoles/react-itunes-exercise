@@ -5,11 +5,15 @@ import PropTypes from 'prop-types';
 
 import Song from './Song';
 
-const styles = theme => ({
+const styles = () => ({
   container: {
-    marginLeft: '30px',
     display: 'flex',
     maxWidth: '500px',
+    width: 'auto',
+    marginTop: '34px',
+    paddingLeft: '30px',
+    paddingRight: '30px',
+    minWidth: '360px',
   },
 });
 

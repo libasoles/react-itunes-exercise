@@ -4,9 +4,8 @@ import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { withStyles } from '@material-ui/core/styles';
-
-import logo from '../logo.png';
 import LinkWrapper from './Link';
+import { Logo } from './Logo';
 
 const styles = theme => ({
   appBar: {
@@ -23,7 +22,7 @@ function Header({ classes, title }) {
     <AppBar position="static" className={classes.appBar}>
       <Toolbar>
         <LinkWrapper to="/">
-          <img src={logo} alt="logo" className={classes.logo} />
+          <Logo className={classes.logo} />
           <Typography variant="h6" color="inherit" noWrap>
             {title}
           </Typography>

@@ -12,14 +12,20 @@ import ArtistDescription from '../components/ArtistDescription';
 import Loading from '../../components/Loading';
 import AlbumItem from '../components/AlbumItem';
 import BackButton from '../../components/BackButton';
+import { WithConfig } from '../../config';
+import MoreResults from '../../components/MoreResults';
+import { mergeWithoutDuplicates } from '../../helpers/merge';
 
-const styles = theme => ({
+const styles = () => ({
   artist: {
     marginTop: '10px',
   },
   backButton: {
     position: 'absolute',
     right: '60px',
+    '@media (max-width: 767px)': {
+      display: 'none',
+    },
   },
 });
 
@@ -29,45 +35,69 @@ class AlbumsPage extends Component {
 
     this.state = {
       artist: {},
-      items: [],
+      albums: [],
+      offset: 0,
+      shouldLoadMore: false,
       loading: true,
     };
   }
 
   componentDidMount() {
-    const { id } = get(this.props, 'match.params');
+    this.fetchData();
+  }
 
-    const filters = {
-      limit: 25,
-    };
+  fetchData = () => {
+    const { id } = get(this.props, 'match.params');
+    const { offset } = this.state;
+    const filters = { offset };
 
     resources.fetchAlbumsByArtistId(id, filters)
-      .then((data) => {
-        this.setState({
-          artist: data.artist,
-          items: data.albums,
-          loading: false,
-        });
-      })
-      .catch((response) => {
-        this.setState({
-          artist: {},
-          items: [],
-          loading: false,
-        });
-        console.error(response);
-      });
+      .then(this.handleSuccessfulResponse)
+      .catch(this.handleErrorResponse);
+  }
+
+  handleSuccessfulResponse = (data) => {
+    this.setState(state => ({
+      artist: data.artist,
+      albums: mergeWithoutDuplicates(state.albums, data.albums),
+      shouldLoadMore: this.shouldLoadMoreAlbums(data.albums),
+      offset: this.calculateNewOffset(state.offset),
+      loading: false,
+    }));
+  }
+
+  handleErrorResponse = (response) => {
+    this.setState({
+      artist: {},
+      albums: [],
+      loading: false,
+    });
+  }
+
+  shouldLoadMoreAlbums = (albums) => {
+    const { config } = this.props;
+    const expectedLength = Number(config.itemsPerPage);
+
+    return albums.length === expectedLength;
+  }
+
+  calculateNewOffset = (existingOffset) => {
+    const { config } = this.props;
+
+    return Number(existingOffset) + Number(config.itemsPerPage);
   }
 
   render() {
     const { classes } = this.props;
-    const { artist, items, loading } = this.state;
+    const {
+      artist, albums, shouldLoadMore, loading,
+    } = this.state;
 
     if (loading) {
       return <Loading />;
     }
 
-    if (!items.length) {
+    if (!albums.length) {
       return <NoResults />;
     }
 
@@ -77,7 +107,8 @@ class AlbumsPage extends Component {
         <Grid item className={classes.artist}>
           <ArtistDescription artist={artist} />
         </Grid>
-        <SearchResults items={items} component={<AlbumItem />} />
+        <SearchResults items={albums} component={<AlbumItem />} />
+        { shouldLoadMore && <MoreResults handleChange={this.fetchData} /> }
       </Page>
     );
   }
@@ -85,6 +116,8 @@ class AlbumsPage extends Component {
 
 AlbumsPage.propTypes = {
   classes: PropTypes.shape({}).isRequired,
+  config: PropTypes.shape({}).isRequired,
 };
 
-export default withStyles(styles)(AlbumsPage);
+const WrappedComponent = WithConfig(AlbumsPage);
+export default withStyles(styles)(WrappedComponent);

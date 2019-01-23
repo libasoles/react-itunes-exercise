@@ -10,7 +10,7 @@ import { withStyles } from '@material-ui/core';
 
 import Link from '../../components/Link';
 
-const styles = theme => ({
+const styles = () => ({
   card: {
     width: '100px',
     display: 'flex',

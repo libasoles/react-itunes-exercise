@@ -1,12 +1,13 @@
 import axios from 'axios';
 import get from 'lodash/get';
 
+import { config } from '../config';
 import { getTransformerFor } from './transformers';
 
 class Api {
   constructor() {
-    this.itunesApiBaseUrl = 'https://itunes.apple.com';
-    this.limit = 25;
+    this.itunesApiBaseUrl = config.apibaseUrl;
+    this.limit = config.itemsPerPage;
   }
 
   fetchAlbums = (filters = {}) => {

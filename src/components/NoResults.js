@@ -5,7 +5,7 @@ import { OfflineBolt } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
-const styles = theme => ({
+const styles = () => ({
   noResults: {
     display: 'flex',
     flex: 1,
@@ -23,7 +23,7 @@ function NoResults({ classes }) {
     >
       <OfflineBolt color="secondary">no_results</OfflineBolt>
       <Typography variant="h6" color="secondary" noWrap>
-  Sorry, no results
+  Lo siento, no hay resultados
       </Typography>
     </Grid>
   );

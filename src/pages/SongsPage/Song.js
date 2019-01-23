@@ -9,7 +9,7 @@ import { withStyles } from '@material-ui/core';
 import Link from '@material-ui/core/Link';
 
 
-const styles = theme => ({
+const styles = () => ({
   container: {
     justifyContent: 'space-between',
     alignItems: 'center',

@@ -13,16 +13,19 @@ import ArtistDescription from '../components/ArtistDescription';
 import AlbumDescription from '../components/AlbumDescription';
 import BackButton from '../../components/BackButton';
 
-const styles = theme => ({
+const styles = () => ({
   container: {
-    flexDirection: 'columns',
+    flexDirection: 'row',
     alignItems: 'stretch',
+    '@media (max-width: 767px)': {
+      flexDirection: 'column',
+    },
   },
   metadata: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'stretch',
-    margin: '20px 0 0 10px',
+    padding: '20px 10px 0 10px',
   },
   artistDescription: {
     marginBottom: '20px',
@@ -33,6 +36,9 @@ const styles = theme => ({
   backButton: {
     position: 'absolute',
     right: '60px',
+    '@media (max-width: 767px)': {
+      display: 'none',
+    },
   },
 });
 

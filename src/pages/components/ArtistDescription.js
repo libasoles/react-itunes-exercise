@@ -7,7 +7,7 @@ import Link from '@material-ui/core/Link';
 import { withStyles } from '@material-ui/core';
 
 
-const styles = theme => ({
+const styles = () => ({
   container: {
     flexDirection: 'column',
     alignItems: 'center',

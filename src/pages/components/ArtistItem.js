@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid/Grid';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -7,8 +8,9 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core';
 
 import Link from '../../components/Link';
+import { Logo } from '../../components/Logo';
 
-const styles = theme => ({
+const styles = () => ({
   card: {
     width: '100px',
     display: 'flex',
@@ -35,10 +37,19 @@ const styles = theme => ({
     textAlign: 'left',
     justifyContent: 'flex-start',
   },
+  icon: {
+    margin: '8px',
+  },
+  logo: {
+    width: '50px',
+  },
   name: {
     fontSize: '1em',
     textAlign: 'left',
     justifyContent: 'flex-start',
+    textOverflow: 'ellipsis',
+    maxHeight: '70px',
+    overflow: 'hidden',
   },
   description: {
     fontSize: '0.7em',
@@ -60,9 +71,14 @@ const ArtistItem = (props) => {
               { name }
             </Typography>
           </Link>
-          <Typography className={classes.description} color="secondary">
-            { description }
-          </Typography>
+          <Grid item>
+            <Link to={`/artists/${id}/albums`} className={classes.icon}>
+              <Logo className={classes.logo} />
+            </Link>
+            <Typography noWrap className={classes.description} color="secondary">
+              { description }
+            </Typography>
+          </Grid>
         </CardActions>
       </CardContent>
     </Card>
