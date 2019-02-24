@@ -17,7 +17,7 @@ const styles = () => ({
   },
 });
 
-function SongsList({ classes, songs }) {
+function SongsList({ classes, songs, onPlayClicked }) {
   return (
     <Grid
       container
@@ -26,7 +26,7 @@ function SongsList({ classes, songs }) {
     >
       {songs.map(song => (
         <Grid item key={song.id} xs={12}>
-          <Song data={song} />
+          <Song data={song} onPlayClicked={onPlayClicked} />
         </Grid>
       ))}
     </Grid>
@@ -44,6 +44,7 @@ SongsList.propTypes = {
     image: PropTypes.string.isRequired,
     link: PropTypes.string.isRequired,
   })).isRequired,
+  onPlayClicked: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(SongsList);

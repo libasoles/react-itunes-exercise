@@ -25,6 +25,7 @@ const transformers = {
     time: moment.utc(data.trackTimeMillis),
     image: data.artworkUrl100,
     link: data.trackViewUrl,
+    preview: data.previewUrl,
   }),
 };
 

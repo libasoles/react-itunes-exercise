@@ -12,6 +12,7 @@ import SongsList from './SongsList';
 import ArtistDescription from '../components/ArtistDescription';
 import AlbumDescription from '../components/AlbumDescription';
 import BackButton from '../../components/BackButton';
+import Player from './Player';
 
 const styles = () => ({
   container: {
@@ -29,6 +30,9 @@ const styles = () => ({
   },
   artistDescription: {
     marginBottom: '20px',
+  },
+  playerContainer: {
+    margin: '15px auto',
   },
   songs: {
     flex: 1,
@@ -50,6 +54,7 @@ class SongsPage extends Component {
       artist: {},
       album: {},
       songs: [],
+      currentSong: null,
       loading: true,
     };
   }
@@ -79,10 +84,19 @@ class SongsPage extends Component {
       });
   }
 
+  onPlayClicked = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    const src = e.currentTarget.attributes["data-src"].value;
+    this.setState({
+      currentSong: src,
+    });
+  }
+
   render() {
     const { classes } = this.props;
     const {
-      artist, album, songs, loading,
+      artist, album, songs, loading, currentSong,
     } = this.state;
 
     if (loading) {
@@ -106,9 +120,12 @@ class SongsPage extends Component {
                 <AlbumDescription album={album} />
               </Grid>
             </Grid>
+            <Grid item className={classes.playerContainer}>
+              { currentSong && <Player src={currentSong} /> }
+            </Grid>
           </Grid>
-          <Grid item className={classes.songs}>
-            <SongsList songs={songs} />
+          <Grid item className={classes.songs}>           
+            <SongsList songs={songs} onPlayClicked={this.onPlayClicked} />
           </Grid>
         </Grid>
       </Page>

@@ -31,9 +31,9 @@ const styles = () => ({
 });
 
 const Song = (props) => {
-  const { classes, data } = props;
+  const { classes, data, onPlayClicked } = props;
   const {
-    name, description, link, time,
+    name, description, link, preview, time,
   } = data;
 
   return (
@@ -42,7 +42,7 @@ const Song = (props) => {
         <Grid item>
           <Grid container className={classes.mainData} spacing={8}>
             <Grid item>
-              <IconButton aria-label="Play/pause">
+              <IconButton aria-label="Play/pause" onClick={onPlayClicked} data-src={preview}>
                 <PlayArrowIcon className={classes.playIcon} />
               </IconButton>
             </Grid>
@@ -80,6 +80,7 @@ Song.propTypes = {
     image: PropTypes.string.isRequired,
     link: PropTypes.string.isRequired,
   }).isRequired,
+  onPlayClicked: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(Song);
